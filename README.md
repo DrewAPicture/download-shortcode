@@ -57,7 +57,7 @@ Have you ever linked a PDF, an mp3, image, or other kind of file because you wan
 #### Important notes:
 1. If your server permissions allow it, the plugin will automatically attempt to copy force-download.php to your `/wp-content/` directory.
 2. If your server permissions DO NOT allow it, you will need to manually upload the file located in `/download-shortcode/wp-content/force-download.php` to your `/wp-content/` directory.
-3. By default, forced-download links only support files located in your uploads directory. More about this in [Other Notes](http://wordpress.org/extend/plugins/download-shortcode/other_notes).
+3. By default, forced-download links only support files located in your uploads directory. More about this in **Other Notes**.
 
 
 ## Installation
