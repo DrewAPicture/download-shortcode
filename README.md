@@ -75,12 +75,12 @@ Currently, this plugin can force downloads for pdf, mp4, mp3, gif, png, jpg and 
 ##### When I click links from the front-end, all I get is a 404 Page Not Found error or a white screen. What gives?
 
 There are two things you should check:
-* There may be a problem with the force-download.php script located in your `/wp-content/` directory. Try copying the force-download.php file from download-shortcode/inc/force-download.php to your wp-content directory.
+* There may be a problem with the force-download.php script located in your `/wp-content/` directory. Try copying the force-download.php file from download-shortcode/inc/force-download.php to your `/wp-content/` directory.
 * It is also possible you just need to flush your rewrite rules by visiting the Settings > Permalinks screen in your Dashboard.
 
 ##### How can I modify this plugin's default behavior?
 
-Check out the [Other Notes](http://wordpress.org/extend/plugins/download-shortcode/other_notes) section for example functions and filters.
+Check out the **Other Notes** section for example functions and filters.
 
 ##### I've uninstalled Download Shortcode but now I have a bunch of broken shortcodes in my posts and pages. How can I hide them?
 
@@ -96,7 +96,7 @@ You can add the following function to your theme's `functions.php` file to hide 
 
 ##### By default, download shortcodes work in a few specific ways:
 
-* If you have 'pretty permalinks' enabled via Settings > Permalinks, your links will automatically be rewritten to http://yoursite.com/download/path/__yourfile
+* If you have 'pretty permalinks' enabled via Settings > Permalinks, your links will automatically be rewritten to `http://yoursite.com/download/path/__yourfile`
 * If you don't include a label with your shortcode, the link URL will be displayed instead
 
 If you wish to modify how some aspects of how download shortcodes are displayed or rewritten, there are several filters you can use to accomplish this. These should be added to your theme's `functions.php` file.
@@ -141,13 +141,13 @@ This example filter changes the rewrite path to http://yoursite.com/members/your
 
 ## Changelog
 
-= 1.1 =
+#### 1.1
 
 * Add support for WordPress in a subdirectory
 * Regenerate pot file to include translatable strings
 * TODO: Add Multisite upload directory support
 
-= 1.0 =
+#### 1.0
 
 * Complete plugin rewrite
 * Introduce URL rewriting if 'pretty permalinks' are enabled
@@ -157,22 +157,22 @@ This example filter changes the rewrite path to http://yoursite.com/members/your
 * Add `fds_upload_rewrite_path` filter to allow changing the supported directory
 * Make the plugin translatable
 
-= 0.2.3 =
+#### 0.2.3
 
 * Update readme.txt with note about replacing force-download.php in wp-content with the new one
 
-= 0.2.2 =
+#### 0.2.2
 
 * Remove faulty strlen check on filenames in force-download.php
 * Fixes for WSOD issues.
 
-= 0.2 =
+#### 0.2
 
 * Fix security vulnerability which exposed php core files to direct download
 * Adds phpDoc blocks
 * Add `fds_download_link_class` filter to change download link class
 * Other minor tweaks
 
-= 0.1 =
+#### 0.1
 
 * Initial release
