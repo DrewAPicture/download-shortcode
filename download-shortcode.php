@@ -8,44 +8,70 @@
  * Version: 1.1
  */
 
-require_once( __DIR__ . '/includes/class-download-shortcode.php' );
-
 /**
  * Class Download_Shortcode_Setup
  */
 class Download_Shortcode_Setup {
 
-	private static $_instance;
+	/**
+	 * Static instance.
+	 *
+	 * @static
+	 * @access private
+	 * @var Download_Shortcode_Setup
+	 */
+	public static $_instance = null;
 
 	/**
-	 * Instantiate singelton.
+	 * Whether the back-compat force-download.php file needs to be deleted.
+	 *
+	 * @access protected
+	 * @var bool
+	 */
+	protected $force_file = false;
+
+	/**
+	 * Deliberately empty constructor :-)
+	 */
+	public function __construct() {}
+
+	/**
+	 * Instance.
+	 *
+	 * @static
+	 * @access public
 	 *
 	 * @return Download_Shortcode_Setup
 	 */
-	public static function get_instance() {
+	public static function init() {
 		if ( ! isset( self::$_instance ) ) {
 			self::$_instance = new Download_Shortcode_Setup();
+
+			// Textdomain and requires.
 			self::$_instance->startup();
 
-//			self::$_instance->shortcode = new Download_Shortcode();
+			// Core functionality.
+			self::$_instance->shortcode = new Download_Shortcode();
+
+			// Clean up legacy force-download script.
+			self::$_instance->cleanup = new Download_Shortcode_Cleanup();
 		}
 		return self::$_instance;
 	}
 
 	/**
-	 * Start it up.
+	 * Start up tasks.
 	 *
-	 * Take care of the textdomain, activation and deactivation hooks, etc.
+	 * @access protected
 	 */
-	public function startup() {
+	protected function startup() {
 		// Translations.
 		load_plugin_textdomain( 'force_download_shortcode', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
-		// Register deactivation hook.
-		register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
-
 		// Requires.
 		require_once( __DIR__ . '/includes/class-download-shortcode.php' );
+		require_once( __DIR__ . '/includes/class-download-shortcode-cleanup.php' );
 	}
+
 }
-$shortcode = Download_Shortcode_Setup::get_instance();
+add_action( 'plugins_loaded', array( 'Download_Shortcode_Setup', 'init' ) );
